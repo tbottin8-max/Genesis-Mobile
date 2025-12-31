@@ -1,4 +1,4 @@
-    import flet as ft
+import flet as ft
 import yfinance as yf
 
 # Liste simplifiée et propre pour éviter tout bug de lecture
