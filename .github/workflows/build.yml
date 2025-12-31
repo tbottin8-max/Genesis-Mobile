@@ -6,7 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
+
+    # Java est obligatoire pour construire des applis Android
     - name: Setup Java
       uses: actions/setup-java@v3
       with:
@@ -17,19 +18,16 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.22.0'
-        
+
     - name: Install Flet
       run: |
         pip install flet
-        
+
+    # ASTUCE : On utilise "yes" pour forcer la validation automatique
+    # Le trait vertical | permet d'envoyer le "oui" dans la commande suivante
     - name: Build APK
       run: |
-        flet build apk --verbose
+        yes | flet build apk --verbose
         
     - name: Upload APK
       uses: actions/upload-artifact@v4
